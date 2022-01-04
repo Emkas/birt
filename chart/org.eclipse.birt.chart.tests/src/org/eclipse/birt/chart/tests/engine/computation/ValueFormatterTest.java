@@ -14,6 +14,8 @@
 
 package org.eclipse.birt.chart.tests.engine.computation;
 
+import java.util.Locale;
+
 import org.eclipse.birt.chart.computation.ValueFormatter;
 import org.eclipse.birt.chart.exception.ChartException;
 import org.eclipse.birt.chart.model.data.impl.NumberDataElementImpl;
@@ -23,6 +25,18 @@ import com.ibm.icu.text.DecimalFormat;
 import junit.framework.TestCase;
 
 public class ValueFormatterTest extends TestCase {
+
+	private static final Locale SYSTEM_LOCALE = Locale.getDefault();
+
+	@Override
+	protected void setUp() throws Exception {
+		Locale.setDefault(Locale.ENGLISH);
+	}
+
+	@Override
+	protected void tearDown() throws Exception {
+		Locale.setDefault(SYSTEM_LOCALE);
+	}
 
 	public void testCorrectNumber() {
 

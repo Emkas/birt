@@ -14,6 +14,8 @@
 
 package org.eclipse.birt.chart.tests.engine.util;
 
+import java.util.Locale;
+
 import org.eclipse.birt.chart.model.attribute.impl.ColorDefinitionImpl;
 import org.eclipse.birt.chart.model.component.Label;
 import org.eclipse.birt.chart.model.component.impl.LabelImpl;
@@ -25,13 +27,15 @@ import junit.framework.TestCase;
 
 public class ChartUtilTest extends TestCase {
 
+	private static final Locale SYSTEM_LOCALE = Locale.getDefault();
+
 	/**
 	 * Construct and initialize any objects that will be used in multiple tests.
 	 * Currently Empty.
 	 */
 	@Override
 	protected void setUp() throws Exception {
-
+		Locale.setDefault(Locale.ENGLISH);
 	}
 
 	/**
@@ -40,7 +44,7 @@ public class ChartUtilTest extends TestCase {
 	 */
 	@Override
 	protected void tearDown() throws Exception {
-
+		Locale.setDefault(SYSTEM_LOCALE);
 	}
 
 	/**
@@ -137,7 +141,7 @@ public class ChartUtilTest extends TestCase {
 		assertEquals(null, ChartUtil.stringValue(null));
 		assertEquals("1", ChartUtil.stringValue(1));//$NON-NLS-1$
 		assertEquals("0.00100001", ChartUtil.stringValue(0.00100001));//$NON-NLS-1$
-		// TODO test case only works under pacific time zone
+
 		Calendar calendar = Calendar.getInstance();
 		calendar.set(2015, 0, 22, 11, 56, 10);
 		calendar.set(Calendar.MILLISECOND, 125);
